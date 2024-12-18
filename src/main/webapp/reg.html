@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User Registration</title>
+	<style>
+		body {
+			background-image: url("img/login-bg.png");
+			background-size: cover;
+			/* Adjust the background size to cover the entire body */
+			margin: 0;
+			/* Remove default body margin */
+			padding: 0;
+			/* Remove default body padding */
+			height: 100vh;
+			/* Set body height to full viewport height */
+			display: flex;
+			/* Use flexbox for centering */
+			justify-content: center;
+			/* Center the form horizontally */
+			align-items: center;
+			/* Center the form vertically */
+		}
+
+		label {
+			text-align: left;
+			display: block;
+			font-weight: bold;
+			font-style: normal;
+		}
+
+		.form {
+			background-color: rgba(255, 255, 255, 0.3);
+			/* Set background color with transparency */
+			padding: 20px;
+			/* Add padding to the form */
+			border-radius: 10px;
+			/* Add rounded corners to the form */
+			width: 450px;
+			/* Set width of the form */
+			text-align: center;
+			/* Center the text inside the form */
+		}
+
+		.form input[type="email"],
+		.form input[type="password"],
+		.form input[type="text"] {
+			width: 100%;
+			/* Make input fields fill the width of the form */
+			padding: 5px;
+			/* Add padding to input fields */
+			margin-bottom: 10px;
+			/* Add spacing between input fields */
+			box-sizing: border-box;
+			/* Include padding and border in the element's total width and height */
+			background-color: rgb(255, 255, 255, 0.4);
+			border-width: 1px;
+		}
+
+		.form input[type="submit"] {
+			width: 100%;
+			/* Make submit button fill the width of the form */
+			padding: 10px;
+			/* Add padding to submit button */
+			background-color: #007bff;
+			/* Set background color of the submit button */
+			color: white;
+			/* Set text color of the submit button */
+			border: none;
+			/* Remove border from the submit button */
+			border-radius: 5px;
+			/* Add rounded corners to the submit button */
+			cursor: pointer;
+			/* Change cursor to pointer on hover */
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: rgb(255, 255, 255);
+			font-size: large;
+			text-decoration: underline;
+
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="form">
+
+		<fieldset>
+			<legend>
+				<h2>User Registration</h2>
+			</legend>
+			<form action="regCtrl" method="post">
+				<label for="Username">Username:</label><br>
+				<input type="text" id="username" name="Username" placeholder="Enter your name " required><br><br>
+
+				<label for="email">Email:</label><br>
+				<input type="email" id="email" name="email" placeholder="Enter your Email " required><br><br>
+
+				<label for="password">Password:</label><br>
+				<input type="password" id="password" name="password" placeholder="Enter Strong password "
+					required><br><br>
+
+				<input type="submit" value="Register">
+			</form>
+
+		</fieldset>
+
+		<p>
+		<h4>If you have already an account please <a href="LoginPage.html">login</a>.</h4>
+		</p>
+
+
+
+	</div>
+
+</body>
+
+</html>

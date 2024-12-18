@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Live Video Streaming Platform</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f0f0f0;
+			background-image: url("img/login-bg.png");
+			background-size: cover;
+			background-position: center;
+		}
+
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+			background-image: url("img/login-bg.png");
+			background-size: cover;
+			background-position: center;
+		}
+
+		nav ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		nav ul li {
+			display: inline;
+			margin-right: 20px;
+		}
+
+		nav ul li a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		nav ul li a:hover {
+			text-decoration: underline;
+			color: aquamarine;
+		}
+
+		.main-content {
+			padding: 20px;
+			margin: 20px;
+			margin-bottom: 20px;
+			background-color: rgba(255, 255, 255, 0.5);
+			border-radius: 50px;
+		}
+
+		.thumnail {
+			text-align: center;
+			padding: 20px;
+			cursor: pointer;
+		}
+
+		.live-buttons {
+			display: flex;
+			justify-content: space-evenly;
+			padding: 0;
+			margin-top: 10px;
+			margin-left: 350px;
+			margin-right: 350px;
+		}
+
+		.live-buttons div {
+			cursor: pointer;
+		}
+
+		.payment-section {
+			padding: 20px;
+			margin-top: 20px;
+			background-color: rgba(255, 255, 255, 0.2);
+			border-radius: 20px;
+			width: 100%;
+		}
+
+		.history-section {
+			padding: 20px;
+			margin-top: auto;
+			background-color: rgba(255, 255, 255, 0.2);
+			border-radius: 20px;
+			width: 100%;
+		}
+
+
+
+		.payments-Realated {
+			display: flex;
+			justify-content: space-evenly;
+			gap: 10px;
+			padding: 0;
+			margin: 25px;
+		}
+
+		a {
+			color: azure;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+			color: aliceblue;
+			font-size: large;
+
+		}
+
+		footer {
+			background-color: #333;
+			background-color: rgba(255, 255, 255, 0.01);
+			padding: 10px;
+			text-align: center;
+			bottom: 0;
+			width: 100%;
+			color: #f0f0f0;
+		}
+
+		table {
+			width: 80%;
+			margin: 100px;
+			margin-left: 150px;
+		}
+
+		th,
+		td {
+			padding: 10px;
+
+			text-align: center;
+			border-bottom: 1px solid #ddd;
+			background-color: rgba(255, 255, 255, 0.7);
+		}
+
+		td {
+
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+
+		.price-caption {
+
+			color: #f0f0f0;
+			font-size: large;
+			font-weight:bold;
+			margin-bottom: 8px;
+
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1>Welcome to Live Video Streaming Platform</h1>
+		<nav>
+			<ul>
+				<li><a href="LoginPage.html">Login</a></li>
+				<li><a href="reg.html">Register</a></li>
+				<li><a href="#prices">Price</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<section class="main-content">
+		<h2>About Live Video Streaming</h2>
+		<p>
+			On our platform, users can stream their content live, interact with viewers through chat or comments, and
+			earn rewards or coins based on their viewership. With features like daily and weekly transaction summaries,
+			users can track their streaming activity and monitor their coin balance.
+		</p>
+	</section>
+
+	<!-- Live video panel, visible only when user is logged in -->
+	<div class="thumnail" id="thumbnail">
+		<h2>Live Video Stream</h2>
+		<div>
+			<img src="img/Screenshot (22).png" onclick="imgclick()">
+			<div class="live-buttons">
+				<div onclick="startLive()"><a href="#">Go Live</a></div>
+				<div onclick="endLive()"><a href="#">End Live</a></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="payments-Realated">
+		<div class="payment-section">
+			<h2>Payment Section</h2>
+			<p>Make a payment or update balance click on this link now . <a href="PaymentPage.html">Pay now</a></p>
+		</div>
+
+		<div class="history-section">
+			<h2>Transaction History</h2>
+			<p>Users can view their transaction <a href="#">History</a> here.</p>
+		</div>
+	</div>
+
+	<div class="prices" id="prices">
+		<table id="priceTable">
+			<caption class="price-caption">Price Changes</caption>
+			<thead>
+				<tr>
+					<th>Plans</th>
+					<th>Price</th>
+					<th>Discount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Daily</td>
+					<td id="dailyPrice"></td>
+					<td id="dailyDiscount"></td>
+				</tr>
+				<tr>
+					<td>Weekly</td>
+					<td id="weeklyPrice"></td>
+					<td id="weeklyDiscount"></td>
+				</tr>
+				<tr>
+					<td>Monthly</td>
+					<td id="monthlyPrice"></td>
+					<td id="monthlyDiscount"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<footer>
+		<p>&copy; 2024 Live Video Streaming. All rights reserved.</p>
+	</footer>
+
+	<script>
+		function startLive() {
+			if (!isLoggedIn()) {
+				alert("Login required for streaming access.");
+			}
+			// Implement the logic to start live streaming
+		}
+
+		function endLive() {
+			if (!isLoggedIn()) {
+				alert("Login required for streaming access.");
+			}
+			// Implement the logic to end live streaming
+		}
+		function imgclick() {
+			if (!isLoggedIn()) {
+				alert("Login required for streaming access.");
+			}
+		}
+
+		function isLoggedIn() {
+			// Implement the logic to check if the user is logged in
+			// For demonstration purposes, assume the user is not logged in
+			return false;
+		}
+		// JavaScript code to populate the table with data
+
+		// Define the prices and discounts
+		var prices = {
+			daily: 30,
+			weekly: 210,
+			monthly: 900
+		};
+
+		var discounts = {
+			daily: 0.1,
+			weekly: 0.2,
+			monthly: 0.3
+		};
+
+		// Function to populate the table with data
+		function populateTable() {
+			document.getElementById("dailyPrice").textContent = prices.daily;
+			document.getElementById("dailyDiscount").textContent = discounts.daily * 100 + "%";
+			document.getElementById("weeklyPrice").textContent = prices.weekly;
+			document.getElementById("weeklyDiscount").textContent = discounts.weekly * 100 + "%";
+			document.getElementById("monthlyPrice").textContent = prices.monthly;
+			document.getElementById("monthlyDiscount").textContent = discounts.monthly * 100 + "%";
+		}
+
+		// Call the populateTable function to initially fill the table
+		populateTable();
+	</script>
+</body>
+
+</html>
