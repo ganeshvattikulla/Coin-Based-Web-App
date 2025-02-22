@@ -56,10 +56,27 @@
 		}
 
 		.thumnail {
+
 			text-align: center;
-			padding: 20px;
+			
 			cursor: pointer;
 		}
+		.pic{
+			width: 35%;
+			background-color: rgba(255, 255, 255,0.09);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			border-radius: 20px;
+			
+			
+			
+		}
+		.pic img{
+			width: 100%;
+			object-fit: cover;
+		}
+
 
 		.live-buttons {
 			display: flex;
@@ -146,9 +163,47 @@
 
 			color: #f0f0f0;
 			font-size: large;
-			font-weight:bold;
+			font-weight: bold;
 			margin-bottom: 8px;
 
+		}
+
+		.video-thumbnails {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.video-thumbnails img {
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		
+		
+		.live-buttons {
+			display: flex;
+			justify-content: center;
+			gap: 45px;
+			margin-top: 10px;
+			width: 10px;
+		}
+
+		.live-buttons div {
+			background-color: #333;
+			color: white;
+			padding: 10px 15px;
+			border-radius: 5px;
+		
+		}
+
+		.live-buttons div a {
+			color: white;
+			text-decoration: none;
+		}
+
+		.live-buttons div:hover {
+			background-color: #555;
 		}
 	</style>
 </head>
@@ -177,116 +232,113 @@
 	<!-- Live video panel, visible only when user is logged in -->
 	<div class="thumnail" id="thumbnail">
 		<h2>Live Video Stream</h2>
-		<div>
-			<img src="img/Screenshot (22).png" onclick="imgclick()">
-			<div class="live-buttons">
-				<div onclick="startLive()"><a href="#">Go Live</a></div>
-				<div onclick="endLive()"><a href="#">End Live</a></div>
+		<div class="video-thumbnails">
+			<div class="pic">
+				<img src="img/video-thumnail.jpg" onclick="imgclick()" width="500" height="300">
+				<div class="live-buttons">
+					<div onclick="startLive()"><a href="#">Play</a></div>
+					<div onclick="endLive()"><a href="#">End</a></div>
+				</div>
+			</div>
+
+			<div class="pic">
+				<img src="img/VIdeo-thumbnail.webp" onclick="imgclick()" width="500" height="300">
+				<div class="live-buttons">
+					<div onclick="startLive()"><a href="#">Play</a></div>
+					<div onclick="endLive()"><a href="#">End</a></div>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="payments-Realated">
-		<div class="payment-section">
-			<h2>Payment Section</h2>
-			<p>Make a payment or update balance click on this link now . <a href="PaymentPage.html">Pay now</a></p>
+		<div class="prices" id="prices">
+			<table id="priceTable">
+				<caption class="price-caption">Price Changes</caption>
+				<thead>
+					<tr>
+						<th>Plans</th>
+						<th>Price</th>
+						<th>Discount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Daily</td>
+						<td id="dailyPrice"></td>
+						<td id="dailyDiscount"></td>
+					</tr>
+					<tr>
+						<td>Weekly</td>
+						<td id="weeklyPrice"></td>
+						<td id="weeklyDiscount"></td>
+					</tr>
+					<tr>
+						<td>Monthly</td>
+						<td id="monthlyPrice"></td>
+						<td id="monthlyDiscount"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
-		<div class="history-section">
-			<h2>Transaction History</h2>
-			<p>Users can view their transaction <a href="#">History</a> here.</p>
-		</div>
-	</div>
-
-	<div class="prices" id="prices">
-		<table id="priceTable">
-			<caption class="price-caption">Price Changes</caption>
-			<thead>
-				<tr>
-					<th>Plans</th>
-					<th>Price</th>
-					<th>Discount</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Daily</td>
-					<td id="dailyPrice"></td>
-					<td id="dailyDiscount"></td>
-				</tr>
-				<tr>
-					<td>Weekly</td>
-					<td id="weeklyPrice"></td>
-					<td id="weeklyDiscount"></td>
-				</tr>
-				<tr>
-					<td>Monthly</td>
-					<td id="monthlyPrice"></td>
-					<td id="monthlyDiscount"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 
 
+		<footer>
+			<p>&copy;Ganesh 2024 Live Video Streaming. All rights reserved.</p>
+		</footer>
 
-	<footer>
-		<p>&copy; 2024 Live Video Streaming. All rights reserved.</p>
-	</footer>
-
-	<script>
-		function startLive() {
-			if (!isLoggedIn()) {
-				alert("Login required for streaming access.");
+		<script>
+			function startLive() {
+				if (!isLoggedIn()) {
+					alert("Login required for streaming access.");
+				}
+				// Implement the logic to start live streaming
 			}
-			// Implement the logic to start live streaming
-		}
 
-		function endLive() {
-			if (!isLoggedIn()) {
-				alert("Login required for streaming access.");
+			function endLive() {
+				if (!isLoggedIn()) {
+					alert("Login required for streaming access.");
+				}
+				// Implement the logic to end live streaming
 			}
-			// Implement the logic to end live streaming
-		}
-		function imgclick() {
-			if (!isLoggedIn()) {
-				alert("Login required for streaming access.");
+			function imgclick() {
+				if (!isLoggedIn()) {
+					alert("Login required for streaming access.");
+				}
 			}
-		}
 
-		function isLoggedIn() {
-			// Implement the logic to check if the user is logged in
-			// For demonstration purposes, assume the user is not logged in
-			return false;
-		}
-		// JavaScript code to populate the table with data
+			function isLoggedIn() {
+				// Implement the logic to check if the user is logged in
+				// For demonstration purposes, assume the user is not logged in
+				return false;
+			}
+			// JavaScript code to populate the table with data
 
-		// Define the prices and discounts
-		var prices = {
-			daily: 30,
-			weekly: 210,
-			monthly: 900
-		};
+			// Define the prices and discounts
+			var prices = {
+				daily: 30,
+				weekly: 210,
+				monthly: 900
+			};
 
-		var discounts = {
-			daily: 0.1,
-			weekly: 0.2,
-			monthly: 0.3
-		};
+			var discounts = {
+				daily: 0.1,
+				weekly: 0.2,
+				monthly: 0.3
+			};
 
-		// Function to populate the table with data
-		function populateTable() {
-			document.getElementById("dailyPrice").textContent = prices.daily;
-			document.getElementById("dailyDiscount").textContent = discounts.daily * 100 + "%";
-			document.getElementById("weeklyPrice").textContent = prices.weekly;
-			document.getElementById("weeklyDiscount").textContent = discounts.weekly * 100 + "%";
-			document.getElementById("monthlyPrice").textContent = prices.monthly;
-			document.getElementById("monthlyDiscount").textContent = discounts.monthly * 100 + "%";
-		}
+			// Function to populate the table with data
+			function populateTable() {
+				document.getElementById("dailyPrice").textContent = prices.daily;
+				document.getElementById("dailyDiscount").textContent = discounts.daily * 100 + "%";
+				document.getElementById("weeklyPrice").textContent = prices.weekly;
+				document.getElementById("weeklyDiscount").textContent = discounts.weekly * 100 + "%";
+				document.getElementById("monthlyPrice").textContent = prices.monthly;
+				document.getElementById("monthlyDiscount").textContent = discounts.monthly * 100 + "%";
+			}
 
-		// Call the populateTable function to initially fill the table
-		populateTable();
-	</script>
+			// Call the populateTable function to initially fill the table
+			populateTable();
+		</script>
 </body>
 
 </html>

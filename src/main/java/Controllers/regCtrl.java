@@ -1,7 +1,9 @@
 package Controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +26,7 @@ public class regCtrl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		Data d = new Data();
 		d.setName(request.getParameter("Username"));
 		d.setEmail(request.getParameter("email"));
@@ -31,10 +34,12 @@ public class regCtrl extends HttpServlet {
 		service s = new service(d);
 		try {
 			int a = s.saveData();
-			if(a>0) {
+			if (a > 0) {
 				System.out.println("user Registered..");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("LoginPage.html");
+				dispatcher.forward(request, response);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

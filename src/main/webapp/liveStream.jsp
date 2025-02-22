@@ -15,7 +15,7 @@ body {
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
-	background-image: url("img/login-bg.png");
+	background-image: url("img/picbg.webp");
 	background-size: cover;
 }
 
@@ -94,98 +94,135 @@ a:hover {
 	color: aliceblue;
 	font-size: large;
 }
+.Navigation {
+    text-align: right;
+    margin: 20px 20px 0 0;
+}
+
+.logout button {
+    background-color:blue;
+    color: white;
+    border: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logout button:hover {
+    background-color: darkred;
+}
+footer {
+			background-color: #333;
+			background-color: rgba(255, 255, 255, 0.01);
+			padding: 10px;
+			text-align: center;
+			bottom: 0;
+			width: 100%;
+			color: #f0f0f0;
+		}
+
+
 </style>
 
 </head>
 
 <body>
-	<div id="video-container">
-		<h1>Live Video Stream</h1>
-		<div id="video-player"></div>
+	<div class="Navigation">
+		<a href="home.html" class="logout">
+		<button>Signout</button></a>
 	</div>
-
-	<div id="button-container">
-		<button id="go-live-btn" onclick="startLive()">Go Live</button>
-		<button id="end-live-btn" onclick="endLive()" disabled>End
-			Live</button>
-	</div>
-
-	<div class="userinfo" id="user-info-container">
-		<fieldset class="user-fieldset">
-			<legend style="text-align: center; font-weight: bold;">
-				<h2>User Information</h2>
-			</legend>
-			<%
-			// Import necessary classes
-			List<Data> dataList = (List<Data>) request.getAttribute("userDataList");
-			if (dataList != null) {
-				for (Data userData : dataList) {
-			%>
-			<p>
-				<label for="name">Name:</label>
-				<%=userData.getName()%>
-			</p>
-			<p>
-				<label for="email">Email:</label> <span id="user-email"><%=userData.getEmail()%></span>
-			</p>
-			<p>
-				<label for="password">Password:</label>
-				<%=userData.getPassword()%>
-			</p>
-			<p>
-				<label for="coins">Coins balance:</label> <span id="coin-balance"><%=userData.getCoins()%></span>
-			</p>
-
-			<form id="update-balance-form" action="paymentCtrl" method="post"
-				style="display: none;">
-				<input type="text" id="email" name="email" value="<%=userData.getEmail()%>"> 
-				<input type="text" id="updated-coins" name="coins" value="">
-			</form>
-			<form id="history-form" action="TransactionHistoryServlet"
-				style="display: none;">
-				<input type="hidden" id="user-email" name="email"
-					value="<%=userData.getEmail()%>">
-			</form>
-			<%
-			}
-			} else {
-			%>
-			<p>No user data available.</p>
-			<%
-			}
-			%>
-		</fieldset>
-	</div>
-
-	<div class="payments-Realated">
-		<div class="payment-section">
-			<h2>Payment Section</h2>
-			<%
-			// Retrieve email from session
-			String email = (String) session.getAttribute("email");
-			%>
-
-			<p>
-				Make a payment or update balance click on this link now . <a
-					href="PaymentPage.jsp?email=<%=email%>">Pay now</a>
-			</p>
-
+	<div>
+		<div id="video-container">
+			<h1>Live Video Stream</h1>
+			<div id="video-player"></div>
 		</div>
 
-
-		<div class="history-section" id="xyz">
-			<h2>Transaction History</h2>
-			<p>
-				Users can view their transaction <span>
-					<button id="history" onclick="submitForm()"
-						style="border-radius: 20px">history</button>
-				</span>here.
-			</p>
-			<form id="history-form" action="TransactionHistoryServlet"
-				style="display: none;">
-				<input type="hidden" id="user-email" name="email" value="">
-			</form>
+		<div id="button-container">
+			<button id="go-live-btn" onclick="startLive()">Go Live</button>
+			<button id="end-live-btn" onclick="endLive()" disabled>End
+				Live</button>
 		</div>
+
+		<div class="userinfo" id="user-info-container">
+			<fieldset class="user-fieldset">
+				<legend style="text-align: center; font-weight: bold;">
+					<h2>User Information</h2>
+				</legend>
+				<%
+				// Import necessary classes
+				List<Data> dataList = (List<Data>) request.getAttribute("userDataList");
+				if (dataList != null) {
+					for (Data userData : dataList) {
+				%>
+				<p>
+					<label for="name">Name:</label>
+					<%=userData.getName()%>
+				</p>
+				<p>
+					<label for="email">Email:</label> <span id="user-email"><%=userData.getEmail()%></span>
+				</p>
+				<p>
+					<label for="password">Password:</label>
+					<%=userData.getPassword()%>
+				</p>
+				<p>
+					<label for="coins">Coins balance:</label> <span id="coin-balance"><%=userData.getCoins()%></span>
+				</p>
+
+				<form id="update-balance-form" action="paymentCtrl" method="post"
+					style="display: none;">
+					<input type="text" id="email" name="email"
+						value="<%=userData.getEmail()%>"> <input type="text"
+						id="updated-coins" name="coins" value="">
+				</form>
+				<form id="history-form" action="TransactionHistoryServlet"
+					style="display: none;">
+					<input type="hidden" id="user-email" name="email"
+						value="<%=userData.getEmail()%>">
+				</form>
+				<%
+				}
+				} else {
+				%>
+				<p>No user data available.</p>
+				<%
+				}
+				%>
+			</fieldset>
+		</div>
+
+		<div class="payments-Realated">
+			<div class="payment-section">
+				<h2>Payment Section</h2>
+				<%
+				// Retrieve email from session
+				String email = (String) session.getAttribute("email");
+				%>
+
+				<p>
+					Make a payment or update balance click on this link now . <a
+						href="PaymentPage.jsp?email=<%=email%>">Pay now</a>
+				</p>
+
+			</div>
+
+
+			<div class="history-section" id="xyz">
+				<h2>Transaction History</h2>
+				<p>
+					Users can view their transaction <span>
+						<button id="history" onclick="submitForm()"
+							style="border-radius: 20px">history</button>
+					</span>here.
+				</p>
+				<form id="history-form" action="TransactionHistoryServlet"
+					style="display: none;">
+					<input type="hidden" id="user-email" name="email" value="">
+				</form>
+			</div>
+		</div>
+
+		<footer> &copy; 2024 Ganesh. All rights reserved</footer>
 	</div>
 
 

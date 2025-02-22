@@ -30,7 +30,7 @@ public class login extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter o = response.getWriter();
 		Data d = new Data();
-		String Email=request.getParameter("email");
+		String Email = request.getParameter("email");
 		d.setEmail(Email);
 		d.setPassword(request.getParameter("password"));
 
@@ -41,22 +41,19 @@ public class login extends HttpServlet {
 		boolean b = s.check_login();
 
 		if (b) {
-			
-			// Set email as a session attribute
-            HttpSession session = request.getSession();
-            session.setAttribute("email", Email);
 
-			 // Fetch data from the database
-            List<Data> dataList = s.fetch_data();
-            
-            
-            // Set the fetched data as an attribute in the request object
-            request.setAttribute("userDataList", dataList);
-            // Forward the request to the JSP page
-            RequestDispatcher dispatcher = request.getRequestDispatcher("liveStream.jsp");
-            dispatcher.forward(request, response);
-            
-           
+			// Set email as a session attribute
+			HttpSession session = request.getSession();
+			session.setAttribute("email", Email);
+
+			// Fetch data from the database
+			List<Data> dataList = s.fetch_data();
+
+			// Set the fetched data as an attribute in the request object
+			request.setAttribute("userDataList", dataList);
+			// Forward the request to the JSP page
+			RequestDispatcher dispatcher = request.getRequestDispatcher("liveStream.jsp");
+			dispatcher.forward(request, response);
 
 		} else {
 			out.println("<script>alert('Invalid email or password. Please try again.');</script>");

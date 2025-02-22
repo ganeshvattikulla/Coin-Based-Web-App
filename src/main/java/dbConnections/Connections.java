@@ -11,7 +11,7 @@ public class Connections {
 	public static String drivermanager = "oracle.jdbc.driver.OracleDriver";
 	public static String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	public static String user = "system";
-	public static String password = "Gani143";
+	public static String password = "Gani1431";
 
 	public static Connection getCon() throws Exception {
 
